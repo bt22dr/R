@@ -1,0 +1,40 @@
+#### matrix에 이름 붙이기
+```{r}
+# 1. 
+afterlife <- matrix(c(435,147,375,134),nrow=2,byrow=TRUE)
+afterlife
+dimnames(afterlife) <- list(c("Female","Male"),c("Yes","No"))
+afterlife
+names(dimnames(afterlife)) <- c("Gender","Believer")
+afterlife
+
+# 2. 
+M = matrix(NA,5,5)
+rownames(M)=colnames(M)=LETTERS[1:5] # row.names() = rownames()
+M
+```
+
+
+#### 단정한 데이터(tidy data 형태)를 contingency table 형태로 변환
+```{r}
+Gender <- c("Female","Female","Male","Male")
+Believer <- c("Yes","No","Yes","No")
+Count <- c(435,147,375,134)
+afterlife <- data.frame(Gender,Believer,Count)
+rm(Gender, Believer, Count)
+afterlife
+attach(afterlife)
+beliefs <- tapply(Count,list(Gender,Believer),c)
+beliefs
+```
+
+
+
+
+#### paste 관련 팁
+```{r}
+xnam <- paste0("x", 1:25)
+xnam
+paste(xnam, collapse= "+")
+```
+
